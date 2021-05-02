@@ -144,7 +144,7 @@ if (isset($_GET['msg'])) {
                 <!-- dropdown -->
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;">
-                        <img src='user_images/<?php echo $_SESSION["user_image"] ?>' alt='' width='25' height='25' class='d-inline-block align-text-top rounded-circle'>&nbsp<?php echo $_SESSION['user_name'] . ' '; ?>
+                        <img src="Web_Image/Logo300X300v4.png" alt="" width="32" height="32" class="d-inline-block align-text-top rounded-circle">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="Profile&QR_Code.php">Profile & QR Code</a></li>
@@ -300,7 +300,7 @@ if (isset($_GET['msg'])) {
                             <h2 class='rammeto' style="color:#395902; text-align: center;">Select Ticket</h2>
                             <?php
                             include('dbserver.php');
-                            $sql = "SELECT * FROM ticket WHERE ticket_id = 1";
+                            $sql = "SELECT * FROM TICKET WHERE ticket_id = 1";
                             $result = mysqli_query($db_con, $sql);
                             $check_row = mysqli_num_rows($result);
                             while ($row = mysqli_fetch_assoc($result)) {
@@ -309,7 +309,7 @@ if (isset($_GET['msg'])) {
                                 $_SESSION['card_price_1'] = $row['price'];
                                 $_SESSION['ticket_kid_1'] = $row['ticket_id'];
                             }
-                            $sql = "SELECT * FROM ticket WHERE ticket_id = 2";
+                            $sql = "SELECT * FROM TICKET WHERE ticket_id = 2";
                             $result = mysqli_query($db_con, $sql);
                             $check_row = mysqli_num_rows($result);
                             while ($row = mysqli_fetch_assoc($result)) {
@@ -318,7 +318,7 @@ if (isset($_GET['msg'])) {
                                 $_SESSION['card_price_2'] = $row['price'];
                                 $_SESSION['ticket_adult_1'] = $row['ticket_id'];
                             }
-                            $sql = "SELECT * FROM ticket WHERE ticket_id = 5";
+                            $sql = "SELECT * FROM TICKET WHERE ticket_id = 5";
                             $result = mysqli_query($db_con, $sql);
                             $check_row = mysqli_num_rows($result);
                             while ($row = mysqli_fetch_assoc($result)) {
@@ -327,7 +327,7 @@ if (isset($_GET['msg'])) {
                                 $_SESSION['card_price_3'] = $row['price'];
                                 $_SESSION['ticket_kid_2'] = $row['ticket_id'];
                             }
-                            $sql = "SELECT * FROM ticket WHERE ticket_id = 6";
+                            $sql = "SELECT * FROM TICKET WHERE ticket_id = 6";
                             $result = mysqli_query($db_con, $sql);
                             $check_row = mysqli_num_rows($result);
                             while ($row = mysqli_fetch_assoc($result)) {
