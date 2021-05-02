@@ -24,14 +24,14 @@ if (isset($_SESSION['email'])) {
 // แก้ไข Status เป็น Fail
 if (isset($_POST['cp'])) {
     $order_id_set_status = $_POST['order_id'];
-    $set_status_fail = "UPDATE ORDERS SET status='Fail' WHERE order_id=$order_id_set_status";
+    $set_status_fail = "UPDATE orders SET status='Fail' WHERE order_id=$order_id_set_status";
     $result2 = mysqli_query($db_con, $set_status_fail) or die("Error in query: $sql " . mysqli_error($db_con));
     header("refresh: 0");
 }
 // ใช้ session จาก Email
 $email = $_SESSION['email'];
 // Query ข้อมูล Profile จาก email 
-$sql = "SELECT * FROM USER WHERE email = '$email';";
+$sql = "SELECT * FROM user WHERE email = '$email';";
 
 $result = mysqli_query($db_con, $sql);
 $check_row = mysqli_num_rows($result);
@@ -152,7 +152,7 @@ if ($check_row > 0) {
         </div>
         <?php
         // ดึงข้อมูลรายละเอียดเกี่ยวกับ Order
-        $sql2 = "SELECT * FROM USER RIGHT JOIN ORDERS ON USER.user_id = ORDERS.user_id WHERE USER.user_id = '$id' ORDER BY ORDERS.order_id DESC;";
+        $sql2 = "SELECT * FROM user RIGHT JOIN ORDERS ON USER.user_id = ORDERS.user_id WHERE USER.user_id = '$id' ORDER BY ORDERS.order_id DESC;";
         $result = mysqli_query($db_con, $sql2);
         $check_row = mysqli_num_rows($result);
         ?>
@@ -168,7 +168,7 @@ if ($check_row > 0) {
                     $total_price_and_vat = $row['total_price_and_vat'];
                     $status = $row['status'];
                     // 
-                    $sql3 = "SELECT * FROM SLIP_OF_PAYMENT, CONFIRM_SLIP, QR_CODE WHERE SLIP_OF_PAYMENT.order_id = 
+                    $sql3 = "SELECT * FROM slip_of_payment, confirm_slip, qr_code WHERE SLIP_OF_PAYMENT.order_id = 
                     $order_id AND SLIP_OF_PAYMENT.slip_id = CONFIRM_SLIP.slip_id AND CONFIRM_SLIP.confirm_id = QR_CODE.confirm_id;";
                     $result2 = mysqli_query($db_con, $sql3);
                     $check_row2 = mysqli_num_rows($result2);

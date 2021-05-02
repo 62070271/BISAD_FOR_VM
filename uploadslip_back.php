@@ -24,11 +24,11 @@ include('dbserver.php');
 
             move_uploaded_file($_FILES['pic']['tmp_name'], $pathCopy);
 
-            $sql = "INSERT INTO SLIP_OF_PAYMENT (picture, time_stamp, order_id)
+            $sql = "INSERT INTO slip_of_payment (picture, time_stamp, order_id)
                     VALUES ('$newName', '$date', '$soderid')";
             $result = mysqli_query($db_con, $sql) or die ("Error in query: $sql " . mysqli_error($db_con));
 
-            $up_tk_st = "UPDATE ORDERS SET status='In_progress' WHERE order_id=$soderid";
+            $up_tk_st = "UPDATE orders SET status='In_progress' WHERE order_id=$soderid";
             $result2 = mysqli_query($db_con, $up_tk_st) or die ("Error in query: $sql " . mysqli_error($db_con));
 
             mysqli_close($db_con);

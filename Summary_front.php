@@ -97,7 +97,7 @@
     }
 
     $sql = "SELECT date_booking, SUM(income) AS income, SUM(count_of_sale_ticket) AS t_ticket, SUM(count_thai_kid_ticket) AS t_thkid, SUM(count_thai_adult_ticket) AS t_thad, SUM(count_foreigner_kid_ticket) AS t_frkid, SUM(count_foreigner_adult_ticket) AS t_frad
-            FROM SUMMARY_ACCOUNT AS SA
+            FROM summary_account AS SA
             GROUP BY date_booking
             HAVING date_booking LIKE '$date'
             ";
@@ -255,7 +255,7 @@
                                         <!-- SHOW SUMMARY DATA BY DATE -->
                                         <?php
                                         $sql = "SELECT SUM(income) AS income, SUM(count_of_sale_ticket) AS t_ticket, SUM(count_thai_kid_ticket) AS t_thkid, SUM(count_thai_adult_ticket) AS t_thad, SUM(count_foreigner_kid_ticket) AS t_frkid, SUM(count_foreigner_adult_ticket) AS t_frad
-                                                FROM SUMMARY_ACCOUNT AS SA
+                                                FROM summary_account AS SA
                                                 GROUP BY date_booking
                                                 HAVING date_booking LIKE '$date'
                                                 ";

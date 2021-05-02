@@ -131,7 +131,7 @@ session_start();
                   echo "alert('You came before the reserved date!');";
                   echo "</script>";
                 } elseif ($fetquestatus['qrcode_status'] == '1') {
-                  $sql = "UPDATE QR_CODE SET qrcode_status='0' WHERE confirm_id=$accidsql";
+                  $sql = "UPDATE qr_code SET qrcode_status='0' WHERE confirm_id=$accidsql";
                   mysqli_query($db_con, $sql);
                   echo "<script>";
                   echo "alert('Use QR-code success!');";
@@ -201,7 +201,7 @@ session_start();
 
         // 0 open the front camera
         // 1 open the back camera
-        scanner.start(cameras[1]);
+        scanner.start(cameras[0]);
       } else {
         console.error('No cameras found.');
       }

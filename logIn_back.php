@@ -14,7 +14,7 @@
 
         // userLogin($db_con, $email, $pass);
 
-        $sql = "SELECT * FROM USER WHERE email = '$email' AND user_password = '$pass'";
+        $sql = "SELECT * FROM user WHERE email = '$email' AND user_password = '$pass'";
         $result = mysqli_query($db_con, $sql);
 
         if (mysqli_num_rows($result) == 1) {

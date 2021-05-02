@@ -34,7 +34,7 @@
     }
 
     function emailExit($db_con, $email) {
-      $sql = "SELECT * FROM USER WHERE email = ?;";
+      $sql = "SELECT * FROM user WHERE email = ?;";
       $prePair = mysqli_stmt_init($db_con);
 
       if(!mysqli_stmt_prepare($prePair, $sql)) {
@@ -60,7 +60,7 @@
 
     function createUser($db_con, $f_name, $l_name, $Tel, $email, $password, $gender, $yob, $type, $user_imgdf) {
 
-      $sql = "INSERT INTO USER (first_name, last_name, Tel, email, user_password, gender, year_of_birth, user_type, user_image) 
+      $sql = "INSERT INTO user (first_name, last_name, Tel, email, user_password, gender, year_of_birth, user_type, user_image) 
               VALUES ('$f_name', '$l_name', '$Tel', '$email', '$password', '$gender', '$yob', '$type', '$user_imgdf');";
 
       $result = mysqli_query($db_con, $sql) or die ("Error in query: $sql " . mysqli_error($db_con));
@@ -89,12 +89,12 @@
       require_once('phpqrcode/qrlib.php');
         
       $sql = "SELECT *
-              FROM USER AS U
-              INNER JOIN ORDERS AS O
+              FROM user AS U
+              INNER JOIN orders AS O
               USING (user_id)
-              INNER JOIN SLIP_OF_PAYMENT AS S
+              INNER JOIN slip_of_payment AS S
               USING (order_id)
-              INNER JOIN CONFIRM_SLIP AS C
+              INNER JOIN confirm_slip AS C
               USING (slip_id)
               WHERE S.slip_id = '$slip_id'
               AND O.order_id = '$order_id';
@@ -142,7 +142,7 @@
 
     function updateOrderStatus($order_id, $db_con)
     {
-      $sql = "UPDATE ORDERS 
+      $sql = "UPDATE orders 
               SET status='Complete' 
               WHERE order_id='$order_id';
               ";
@@ -176,12 +176,12 @@
       
       // GET ORDER DETAILS DATA WHEN APPROVE 
       $sql = "SELECT CS.confirm_id, O.booking_date, OT.ticket_id, SUM(OT.quantity) AS tk_type, O.total_price_and_vat, O.total_quantity
-      FROM CONFIRM_SLIP AS CS
-      INNER JOIN SLIP_OF_PAYMENT AS SP
+      FROM confirm_slip AS CS
+      INNER JOIN slip_of_payment AS SP
       USING (slip_id)
-      INNER JOIN ORDERS AS O
+      INNER JOIN orders AS O
       USING (order_id)
-      INNER JOIN ORDER_TICKET AS OT
+      INNER JOIN order_ticket AS OT
       USING (order_id)
       GROUP BY CS.confirm_id, OT.ticket_id
       HAVING CS.confirm_id = '$confirm_id'
@@ -256,12 +256,12 @@
       date_default_timezone_set('Asia/Bangkok');
       $current_date = date("Y-m-d");
 
-      $sql = "UPDATE  QR_CODE AS Q
-              INNER JOIN CONFIRM_SLIP AS CS
+      $sql = "UPDATE  qr_code AS Q
+              INNER JOIN confirm_slip AS CS
               USING (confirm_id)
-              INNER JOIN SLIP_OF_PAYMENT AS SP
+              INNER JOIN slip_of_payment AS SP
               USING (slip_id)
-              INNER JOIN ORDERS AS O
+              INNER JOIN orders AS O
               USING (order_id)
               SET Q.qrcode_status = '2'
               WHERE O.booking_date < '$current_date'

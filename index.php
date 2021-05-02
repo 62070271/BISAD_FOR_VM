@@ -300,7 +300,7 @@ if (isset($_GET['msg'])) {
                             <h2 class='rammeto' style="color:#395902; text-align: center;">Select Ticket</h2>
                             <?php
                             include('dbserver.php');
-                            $sql = "SELECT * FROM TICKET WHERE ticket_id = 1";
+                            $sql = "SELECT * FROM ticket WHERE ticket_id = 1";
                             $result = mysqli_query($db_con, $sql);
                             $check_row = mysqli_num_rows($result);
                             while ($row = mysqli_fetch_assoc($result)) {
@@ -309,7 +309,7 @@ if (isset($_GET['msg'])) {
                                 $_SESSION['card_price_1'] = $row['price'];
                                 $_SESSION['ticket_kid_1'] = $row['ticket_id'];
                             }
-                            $sql = "SELECT * FROM TICKET WHERE ticket_id = 2";
+                            $sql = "SELECT * FROM ticket WHERE ticket_id = 2";
                             $result = mysqli_query($db_con, $sql);
                             $check_row = mysqli_num_rows($result);
                             while ($row = mysqli_fetch_assoc($result)) {
@@ -318,7 +318,7 @@ if (isset($_GET['msg'])) {
                                 $_SESSION['card_price_2'] = $row['price'];
                                 $_SESSION['ticket_adult_1'] = $row['ticket_id'];
                             }
-                            $sql = "SELECT * FROM TICKET WHERE ticket_id = 5";
+                            $sql = "SELECT * FROM ticket WHERE ticket_id = 5";
                             $result = mysqli_query($db_con, $sql);
                             $check_row = mysqli_num_rows($result);
                             while ($row = mysqli_fetch_assoc($result)) {
@@ -327,7 +327,7 @@ if (isset($_GET['msg'])) {
                                 $_SESSION['card_price_3'] = $row['price'];
                                 $_SESSION['ticket_kid_2'] = $row['ticket_id'];
                             }
-                            $sql = "SELECT * FROM TICKET WHERE ticket_id = 6";
+                            $sql = "SELECT * FROM ticket WHERE ticket_id = 6";
                             $result = mysqli_query($db_con, $sql);
                             $check_row = mysqli_num_rows($result);
                             while ($row = mysqli_fetch_assoc($result)) {

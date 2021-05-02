@@ -45,7 +45,7 @@ if (!isset($_SESSION['email'])) {
 <body>
     <?php
     $email = $_SESSION['email'];
-    $sql = "SELECT * FROM USER WHERE email = '$email';";
+    $sql = "SELECT * FROM user WHERE email = '$email';";
 
 
     $result = mysqli_query($db_con, $sql);
@@ -302,7 +302,7 @@ if (!isset($_SESSION['email'])) {
         $n_tel = $_POST['tel'];
 
         // SQL UPDATE VALUES
-        $sql = "UPDATE USER 
+        $sql = "UPDATE user 
                     SET
                         first_name = '$n_fname',
                         last_name = '$n_lname',

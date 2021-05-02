@@ -26,10 +26,10 @@
     session_start();
 
     $sql = "SELECT *
-            FROM CONFIRM_SLIP AS CS
-            RIGHT OUTER JOIN SLIP_OF_PAYMENT AS SP
+            FROM confirm_slip AS CS
+            RIGHT OUTER JOIN slip_of_payment AS SP
             ON CS.slip_id = SP.slip_id
-            INNER JOIN ORDERS AS O
+            INNER JOIN orders AS O
             ON O.order_id = SP.order_id
             WHERE CS.slip_id IS NULL
             AND SP.is_check <> '1'
@@ -234,10 +234,10 @@
                 $user_id = $_GET['userID'];
 
 
-                $sql1 = "UPDATE SLIP_OF_PAYMENT SET is_check='1' WHERE slip_id='$slip_id'";
+                $sql1 = "UPDATE slip_of_payment SET is_check='1' WHERE slip_id='$slip_id'";
                 $res1 = mysqli_query($db_con, $sql1) or die("Error in query: $sql1 " . mysqli_error($db_con));
 
-                $sql = "INSERT INTO CONFIRM_SLIP (slip_id) VALUES ('$slip_id')";
+                $sql = "INSERT INTO confirm_slip (slip_id) VALUES ('$slip_id')";
                 $res = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
 
 
@@ -248,10 +248,10 @@
                 $slip_id = $_GET['slipID'];
                 $order_id = $_GET['orderID'];
 
-                $sql1 = "UPDATE SLIP_OF_PAYMENT SET is_check='1' WHERE slip_id='$slip_id'";
+                $sql1 = "UPDATE slip_of_payment SET is_check='1' WHERE slip_id='$slip_id'";
                 $result = mysqli_query($db_con, $sql1) or die("Error in query: $sql1 " . mysqli_error($db_con));
 
-                $sql2 = "UPDATE ORDERS SET status='Fail' WHERE order_id='$order_id';";
+                $sql2 = "UPDATE orders SET status='Fail' WHERE order_id='$order_id';";
                 $result2 = mysqli_query($db_con, $sql2) or die("Error in query: $sql2 " . mysqli_error($db_con));
 
                 if ($result && $result2) {

@@ -60,7 +60,7 @@ if (isset($_POST['payment'])) {
         $v_id_t4 = $_SESSION['ticket_adult_2'];
         if (isset($_SESSION['email'])) {
             $email = $_SESSION['email'];
-            $sql = "SELECT * FROM USER WHERE email = '$email';";
+            $sql = "SELECT * FROM user WHERE email = '$email';";
             $result = mysqli_query($db_con, $sql);
             if (mysqli_num_rows($result) == 1) {
                 while ($row = mysqli_fetch_assoc($result)) {
@@ -70,11 +70,11 @@ if (isset($_POST['payment'])) {
             }
         }
         // ORDERS
-        $sql = "INSERT INTO ORDERS (booking_date, total_price, status, total_quantity, total_price_and_vat, user_id) 
+        $sql = "INSERT INTO orders (booking_date, total_price, status, total_quantity, total_price_and_vat, user_id) 
          VALUES ('$v_booking_date', '$v_total_price', '$v_status', '$v_total_quantity', '$v_total_price_and_vat', '$v_user_id')";
         $result = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
 
-        $sql = "SELECT order_id FROM ORDERS ORDER BY order_id DESC LIMIT 1";
+        $sql = "SELECT order_id FROM orders ORDER BY order_id DESC LIMIT 1";
         $result = mysqli_query($db_con, $sql);
         if (mysqli_num_rows($result) == 1) {
             while ($row = mysqli_fetch_assoc($result)) {
@@ -85,25 +85,25 @@ if (isset($_POST['payment'])) {
 
         if (isset($_SESSION['$num_type_1'])) {
             $v_q_type1 =  $_SESSION['$num_type_1'];
-            $sql = "INSERT INTO ORDER_TICKET (order_id, ticket_id, quantity) 
+            $sql = "INSERT INTO order_ticket (order_id, ticket_id, quantity) 
          VALUES ('$v_order_id', '$v_id_t1', '$v_q_type1')";
             $result = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
         }
         if (isset($_SESSION['$num_type_2'])) {
             $v_q_type2 =  $_SESSION['$num_type_2'];
-            $sql = "INSERT INTO ORDER_TICKET (order_id, ticket_id, quantity) 
+            $sql = "INSERT INTO order_ticket (order_id, ticket_id, quantity) 
          VALUES ('$v_order_id', '$v_id_t2', '$v_q_type2')";
             $result = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
         }
         if (isset($_SESSION['$num_type_3'])) {
             $v_q_type3 =  $_SESSION['$num_type_3'];
-            $sql = "INSERT INTO ORDER_TICKET (order_id, ticket_id, quantity) 
+            $sql = "INSERT INTO order_ticket (order_id, ticket_id, quantity) 
          VALUES ('$v_order_id', '$v_id_t3', '$v_q_type3')";
             $result = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
         }
         if (isset($_SESSION['$num_type_4'])) {
             $v_q_type4 =  $_SESSION['$num_type_4'];
-            $sql = "INSERT INTO ORDER_TICKET (order_id, ticket_id, quantity) 
+            $sql = "INSERT INTO order_ticket (order_id, ticket_id, quantity) 
          VALUES ('$v_order_id', '$v_id_t4', '$v_q_type4')";
             $result = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
         }
@@ -132,7 +132,7 @@ if (isset($_POST['pick_date'])) {
             exit();
         }
         $date = mysqli_real_escape_string($db_con, $_POST['date']);
-        $sql_d = "SELECT * FROM ORDERS WHERE booking_date = '$date'";
+        $sql_d = "SELECT * FROM orders WHERE booking_date = '$date'";
         $result_d = mysqli_query($db_con, $sql_d);
         $_SESSION['$date'] = $date_c;
         $_SESSION['number_booking'] = strval(mysqli_num_rows($result_d));
